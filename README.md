@@ -7,6 +7,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - Docker and Docker Compose installed
 - Node.js 20+ (for local development)
 
+### Docker Install (Ubuntu24)
+```bash
+sudo apt install docker.io
+sudo usermod -aG docker ubuntu # requires relog
+sudo apt install docker-compose-v2 -y
+```
+
 ### Setup
 
 1. **Create `.env` file:**
