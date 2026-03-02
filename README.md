@@ -5,13 +5,36 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ### Prerequisites
 
 - Docker and Docker Compose installed
-- Node.js 20+ (for local development)
+- Node.js 20.19+ or 22.12+ or 24+ (required for Prisma 7)
+- nvm (Node Version Manager) recommended for managing Node.js versions
 
 ### Docker Install (Ubuntu24)
 ```bash
 sudo apt install docker.io
 sudo usermod -aG docker ubuntu # requires relog
 sudo apt install docker-compose-v2 -y
+```
+
+### Node.js Setup with nvm
+
+This project uses **Prisma 7**, which requires Node.js 20.19+, 22.12+, or 24+.
+
+**Install nvm:**
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+```
+
+**Load nvm (or restart your terminal):**
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+
+**Install and use Node.js 20:**
+```bash
+nvm install 20
+nvm use 20
+node --version  # Should show v20.x.x
 ```
 
 ### Setup
@@ -21,11 +44,18 @@ sudo apt install docker-compose-v2 -y
 echo 'DATABASE_URL=postgresql://postgres:postgres@localhost:5432/nextjs_db?schema=public' > .env
 ```
 
-2. **Install dependencies:**
+2. **Ensure you're using Node.js 20+:**
+```bash
+nvm use 20
+```
+
+3. **Install dependencies:**
 ```bash
 npm install
 npx prisma generate
 ```
+
+**Note:** This project uses Prisma 7, which stores database configuration in `prisma/prisma.config.ts` instead of the schema file.
 
 ### Running with Docker (Production-like)
 
